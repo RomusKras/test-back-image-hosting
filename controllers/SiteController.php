@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -148,8 +149,18 @@ class SiteController extends Controller
 
     public function actionView()
     {
-        $images = Image::find()->all();
-        return $this->render('view', ['images' => $images]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Image::find(),
+            'sort' => [
+                'defaultOrder' => [
+                    'filename' => SORT_ASC, // Сортировка по умолчанию
+                ],
+            ],
+        ]);
+
+        return $this->render('view', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

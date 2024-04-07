@@ -12,13 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <table class="table">
         <tr>
-            <th>Filename</th>
-            <th>Uploaded At</th>
+            <th><?= $dataProvider->sort->link('filename') ?></th>
+            <th><?= $dataProvider->sort->link('uploaded_at') ?></th>
             <th>Preview</th>
             <th>Download</th>
         </tr>
         <?php /** @var Image $images */
-        foreach ($images as $image): ?>
+        foreach ($dataProvider->models as $image): ?>
             <tr>
                 <td><?= Html::encode($image->filename) ?></td>
                 <td><?= Html::encode($image->uploaded_at) ?></td>
