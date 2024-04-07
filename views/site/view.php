@@ -22,7 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <tr>
                 <td><?= Html::encode($image->filename) ?></td>
                 <td><?= Html::encode($image->uploaded_at) ?></td>
-                <td><?= Html::img(Yii::getAlias('@web/uploads/') . $image->filename, ['width' => '100']) ?></td>
+                <td>
+                    <a href="<?= Yii::getAlias('@web/uploads/') . $image->filename ?>" target="_blank">
+                        <?= Html::img(Yii::getAlias('@web/uploads/') . $image->filename, ['width' => '100']) ?>
+                    </a>
+                </td>
                 <td><?= Html::a('Download', ['/download/'.$image->id], ['class' => 'btn btn-primary']) ?></td>
             </tr>
         <?php endforeach; ?>
